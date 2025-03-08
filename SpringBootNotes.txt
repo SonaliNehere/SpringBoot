@@ -1,0 +1,64 @@
+https://spring.io/
+https://start.spring.io/ - create new project
+
+
+DI(Which is a design pattern) is an implementation of IOC(Inversion of control)
+
+SpringApplication.run(MyAppApplication.class, args); -  creates IOC or spring container inside JVM. 
+	In IOC container spring will store objects. When we manually create object , objects will store in JVM but not in IOC container.
+
+@Component -  so that Spring will understand that he has to create the object of this class. Spring initially will not create 
+	object of all classes.
+	
+@Autowired - field injection (spring will connect to the class whose object we want)
+ 
+@Primary
+
+@Qualifier("laptop") - which class to connect 
+
+constructor injection, getter setter injection. field injection
+
+@Controller
+@RestController  - it will return data. but if we remove it it will return page name
+@ResponseBody
+
+@RequestMapping("/")
+
+
+
+Spring without boot ->
+create maven project
+create spring.xml - add bean xml configuration from https
+://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/xsd-configuration.html
+
+constructor injection, getter setter injection. field injection
+autowire - byName, byType
+
+web ->
+@RestController
+@Service
+@Repository
+@Entity
+@Id
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Lob
+
+@GetMapping("/products")
+@GetMapping("/products/{pId}")
+@PostMapping("/products")
+@PutMapping("/products")
+@DeleteMapping("/products/{pId}")
+
+@CrossOrigin
+
+http://localhost:8080/h2-console/
+
+download maven and set path in environment variable
+mvn clean install
+
+npm run dev
+
+
+

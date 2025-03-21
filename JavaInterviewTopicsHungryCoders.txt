@@ -1,1 +1,2 @@
 JDK, JRE, and JVM?
+ Stack and Heap

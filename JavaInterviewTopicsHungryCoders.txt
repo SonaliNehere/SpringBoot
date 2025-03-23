@@ -16,3 +16,5 @@ Why does char use 2 bytes in Java, and not 1 byte like in C/C++?
 What is the difference between float and double in Java? When would you use one over the other?
 What are wrapper classes in Java, and how do they relate to primitive types?
 difference between final, static, and static final variables
+OOPs
+

@@ -1,3 +1,18 @@
 JDK, JRE, and JVM?
 Stack and Heap
 Access Modifiers
+Why Is String an Immutable Class?
+String Intern
+JAR vs WAR vs EAR
+Java is strictly pass-by-value language?
+static, abstract and final keywords in Java?
+Difference between String, StringBuffer, and StringBuilder?
+String.format() 
+Enum 
+Two Types of Casting in Java?
+Is Java statically and strongly typed? 
+Does var keyword makes Java as a dynamically typed language?
+Why does char use 2 bytes in Java, and not 1 byte like in C/C++?
+What is the difference between float and double in Java? When would you use one over the other?
+What are wrapper classes in Java, and how do they relate to primitive types?
+difference between final, static, and static final variables

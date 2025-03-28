@@ -17,4 +17,10 @@ What is the difference between float and double in Java? When would you use one 
 What are wrapper classes in Java, and how do they relate to primitive types?
 difference between final, static, and static final variables
 OOPs
+What is Compile Time Polymorphism and Runtime Polymorphism?
+What are the different types of inheritance?
+What is diamond problem in Java?
+difference between abstract class and interface?
+When to use abstract class VS when to use interface?
+constructor, copy constructor
 

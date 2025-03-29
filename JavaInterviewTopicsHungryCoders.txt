@@ -23,4 +23,14 @@ What is diamond problem in Java?
 difference between abstract class and interface?
 When to use abstract class VS when to use interface?
 constructor, copy constructor
+Exception handling
+What are the scenarios in which finally block will not get executed?
+How to use try-with-resources in Java?
+Difference Between a Checked and an Unchecked Exception?
+Difference Between an Unlabeled and a Labeled break Statement?
+Use of the Throw and Throws Keywords?
+Difference Between an Error and Exception?
+How can you create a custom exception in Java?
+try-with-resources:
+ difference between StackOverflowError and OutOfMemoryError in Java?
 

@@ -41,6 +41,19 @@ How can you force garbage collection in Java? - System.gc();
 What are some of the Useful Annotations used in Java?
 What Are Meta-Annotations?
 Difference Between Primitive and Reference Types?
+Reflection in Java?
+Difference Between an Inner Class and a Static Nested Class?
+difference between equals() and ==?
+What Is an Anonymous Class and what is it's Use Case?
+What Is a Marker Interface and examples of Marker Interfaces in Java?
+What Is an Immutable Class and how to create it?
+Is it possible to Override a Static Method?
+How to Compare Two Enum Values?
+What is the purpose of the this keyword?
+How does the final keyword affect class inheritance and method overriding?
+What Are the Wrapper Classes and what is autoboxing and unboxing in Java?
+What Is a Var-Arg and how to use it? What are benefits and limitations?
+
 
 
 

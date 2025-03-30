@@ -32,5 +32,10 @@ Use of the Throw and Throws Keywords?
 Difference Between an Error and Exception?
 How can you create a custom exception in Java?
 try-with-resources:
- difference between StackOverflowError and OutOfMemoryError in Java?
+difference between StackOverflowError and OutOfMemoryError in Java?
+What is Java Garbage Collection and how does it work?
+What are the different garbage collection algorithms in Java?
+What is a memory leak in Java, and how can you detect it?
+What are Soft, Weak, and Phantom references in Java
+
 

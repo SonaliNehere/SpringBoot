@@ -37,5 +37,11 @@ What is Java Garbage Collection and how does it work?
 What are the different garbage collection algorithms in Java?
 What is a memory leak in Java, and how can you detect it?
 What are Soft, Weak, and Phantom references in Java
+How can you force garbage collection in Java? - System.gc();
+What are some of the Useful Annotations used in Java?
+What Are Meta-Annotations?
+Difference Between Primitive and Reference Types?
+
+
 
 

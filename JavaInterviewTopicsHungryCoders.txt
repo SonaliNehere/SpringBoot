@@ -57,6 +57,8 @@ What Is a Var-Arg and how to use it? What are benefits and limitations?
 What Is the Difference Between a Process and a Thread?
 How can we create a Thread in Java?
 Describe the Different States of a Thread?
+What Is a Daemon Thread and how to create a Daemon Thread? What are the real use cases of Daemon thread?
+What Is the Difference Between the Runnable and Callable Interfaces?
 
 
 

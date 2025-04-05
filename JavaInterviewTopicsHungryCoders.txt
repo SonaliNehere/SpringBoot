@@ -59,6 +59,18 @@ How can we create a Thread in Java?
 Describe the Different States of a Thread?
 What Is a Daemon Thread and how to create a Daemon Thread? What are the real use cases of Daemon thread?
 What Is the Difference Between the Runnable and Callable Interfaces?
+What Is Java Memory Model (JMM) and it' s purpose?
+What is Data Race Condition and Visibility problem?
+Explain about Deadlock, Livelock, and Starvation conditions in Java Multithreading?
+What is Java Executor Service and type of threadpools which can be created with Java Executor service?
+What is Producer-Consumer problem and how to resolve it?
+What is threadLocal and what are the advantages of using ThreadLocal?
+What are Virtual Threads in Java 21?
+What is the Fork/Join Framework in Java?
+What Is the Purpose of the Wait, Notify and Notifyall Methods?
+What Is the Purpose of the Thread.yield()?
+What is the purpose of Semaphore?
+Approaches to write efficient and scalable code in Java concurrency?
 
 
 

@@ -72,6 +72,10 @@ What Is the Purpose of the Thread.yield()?
 What is the purpose of Semaphore?
 Approaches to write efficient and scalable code in Java concurrency?
 
+Collections And Generics : 
+
+
+
 
 
 

@@ -73,6 +73,25 @@ What is the purpose of Semaphore?
 Approaches to write efficient and scalable code in Java concurrency?
 
 Collections And Generics : 
+What Is the Difference Between Fail-Safe and Fail-Fast Iterators?
+What is the Difference Between Linkedlist and Arraylist?
+What is the Difference Between HashMap and HashTable?
+What Is the Difference Between Hashset and Treeset?
+How Is Hashmap Implemented in Java (explain in detail)?
+What Is the use of the Initial Capacity and Load Factor Parameters of a Hashmap and their Default Values?
+Explain about EnumSet and EnumMap?
+How to Use Comparable and Comparator Interfaces to Sort Collections?
+What Are the Main Interfaces in Java Collections?
+What are the differences between Collection and Collections in Java?
+How do you implement a custom collection in Java?
+What is the difference between HashMap and LinkedHashMap?
+How does ConcurrentHashMap work and how is it different from HashMap?
+Explain the internal structure and working of a TreeMap.
+How does a PriorityQueue work and how is it different from a regular queue?
+What is the difference between deep copy and shallow copy in collections?
+How do you handle duplicates in collections such as List, Set, and Map?
+What is the difference between Synchronized Collections and Concurrent Collections in Java?
+
 
 
 

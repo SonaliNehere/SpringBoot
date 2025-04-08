@@ -72,7 +72,7 @@ What Is the Purpose of the Thread.yield()?
 What is the purpose of Semaphore?
 Approaches to write efficient and scalable code in Java concurrency?
 
-Collections And Generics : 
+Collections : 
 What Is the Difference Between Fail-Safe and Fail-Fast Iterators?
 What is the Difference Between Linkedlist and Arraylist?
 What is the Difference Between HashMap and HashTable?
@@ -91,6 +91,13 @@ How does a PriorityQueue work and how is it different from a regular queue?
 What is the difference between deep copy and shallow copy in collections?
 How do you handle duplicates in collections such as List, Set, and Map?
 What is the difference between Synchronized Collections and Concurrent Collections in Java?
+
+Generics :
+What Is a Generic Type Parameter and why are they used??
+What is type erasure in the context of Java Generics?
+Explain the difference between bounded and unbounded type parameters?
+
+
 
 
 

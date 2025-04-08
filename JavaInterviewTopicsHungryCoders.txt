@@ -103,6 +103,12 @@ How do you define a generic method in Java? Provide an example
 Can you create a generic array in Java? Why or why not?
 What is the diamond operator (<>) in Java Generics, and how is it used?
 
+Java I/O and Java NIO
+What are the main differences between Java I/O and Java NIO?
+Explain the purpose and usage of the FileInputStream and FileOutputStream classes in Java I/O.
+
+
+
 
 
 

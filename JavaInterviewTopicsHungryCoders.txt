@@ -96,8 +96,12 @@ Generics :
 What Is a Generic Type Parameter and why are they used??
 What is type erasure in the context of Java Generics?
 Explain the difference between bounded and unbounded type parameters?
-
-
+What are wildcards in Java Generics? Explain the use of ? extends T and ? super
+What are the benefits and limitations of using generics in Java?
+Is It Possible to Declared a Multiple Bounded Type Parameter?
+How do you define a generic method in Java? Provide an example
+Can you create a generic array in Java? Why or why not?
+What is the diamond operator (<>) in Java Generics, and how is it used?
 
 
 

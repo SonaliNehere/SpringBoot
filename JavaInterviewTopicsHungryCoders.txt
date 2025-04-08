@@ -106,6 +106,8 @@ What is the diamond operator (<>) in Java Generics, and how is it used?
 Java I/O and Java NIO
 What are the main differences between Java I/O and Java NIO?
 Explain the purpose and usage of the FileInputStream and FileOutputStream classes in Java I/O.
+How does the BufferedReader class improve the performance of reading text files in Java?
+What is the role of the FileReader and FileWriter classes in Java I/O?
 
 
 

@@ -108,6 +108,13 @@ What are the main differences between Java I/O and Java NIO?
 Explain the purpose and usage of the FileInputStream and FileOutputStream classes in Java I/O.
 How does the BufferedReader class improve the performance of reading text files in Java?
 What is the role of the FileReader and FileWriter classes in Java I/O?
+Describe how you can read and write objects to a file using Java serialization.
+
+
+What is JDBC, and why is it used in Java applications?
+What is JPA, and how does it simplify database operations in Java applications?
+Hibernate
+
 
 
 

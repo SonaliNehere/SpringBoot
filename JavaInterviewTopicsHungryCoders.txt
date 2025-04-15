@@ -123,6 +123,9 @@ default and static methods in interface
 What Is Nashorn in Java8?
 What Is a Java Stream and what is difference between Stream and Collection?
 
+What is a method reference and how is it different from a lambda expression?
+What are the key improvements in the Date and Time API in Java 8?
+
 
 
 

@@ -115,6 +115,15 @@ What is JDBC, and why is it used in Java applications?
 What is JPA, and how does it simplify database operations in Java applications?
 Hibernate
 
+Explain about the new Features which were Added in Java 8?
+functional interface
+lambda expression
+stream api
+default and static methods in interface
+What Is Nashorn in Java8?
+What Is a Java Stream and what is difference between Stream and Collection?
+
+
 
 
 

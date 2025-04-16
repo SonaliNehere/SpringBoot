@@ -126,6 +126,15 @@ What Is a Java Stream and what is difference between Stream and Collection?
 What is a method reference and how is it different from a lambda expression?
 What are the key improvements in the Date and Time API in Java 8?
 
+Java Streams Grouping and Aggregation
+What is an immutable list in Java, and how can you create one with Java Streams that allows null values?
+How do you create a modifiable list that allows null values using Java Streams?
+Explain grouping in Java Streams. How can you group elements of a list by a specific attribute? Provide an example.
+What is aggregation in Java Streams, and why is it useful? Give examples of aggregation operations.
+What are summary statistics in Java Streams? How do they differ from basic aggregation operations like counting or summing?
+How would you filter items in a stream based on a specific attribute, such as price? Explain with an example.
+
+
 
 
 

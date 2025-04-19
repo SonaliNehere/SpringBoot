@@ -133,6 +133,21 @@ Explain grouping in Java Streams. How can you group elements of a list by a spec
 What is aggregation in Java Streams, and why is it useful? Give examples of aggregation operations.
 What are summary statistics in Java Streams? How do they differ from basic aggregation operations like counting or summing?
 How would you filter items in a stream based on a specific attribute, such as price? Explain with an example.
+Record
+Sealed class
+Vector Api
+
+What are Future and CompletableFuture in Java, and how are they used? there differences
+How can you handle exceptions in CompletableFuture?
+Can CompletableFuture execute multiple tasks in parallel and wait for all to complete?
+How can you chain multiple asynchronous computations with CompletableFuture?
+How can you handle both the result and exceptions in a CompletableFuture?
+How does CompletableFuture support combining two futures with different results?
+What is the role of the join() method in CompletableFuture?
+What is the difference between thenCompose() and thenCombine() in CompletableFuture?
+How does CompletableFuture.runAsync() differ from supplyAsync()?
+
+
 
 
 

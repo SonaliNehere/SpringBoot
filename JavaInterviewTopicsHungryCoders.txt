@@ -152,6 +152,16 @@ Spring Boot
 
 
 System Design basics
+How to scale your application to million users? Share best approaches and components which can be useful to scale applications
+1. Vertical Scaling: The Easy Way
+2. Horizontal Scaling
+3. Load Balancers: The Traffic Cops of Your System 🚦
+4. Database Scaling
+5. Caching for Speed
+6. CDNs Explained
+7. Microservices Architecture: Breaking Things Down for Better Growth
+8. Scaling Globally for Disaster Recovery
+
 
 
 

@@ -163,6 +163,10 @@ How to scale your application to million users? Share best approaches and compon
 8. Scaling Globally for Disaster Recovery
 
 
+Explain about blue green deployment strategy and compare with Canary?
+Explain about Latency and Throughput  metrics in system design?
+
+
 
 
 

@@ -163,7 +163,7 @@ How to scale your application to million users? Share best approaches and compon
 8. Scaling Globally for Disaster Recovery
 
 Explain the Pros, Cons, and Use Cases of REST, GraphQL, and gRPC?
-
+What are the SOLID principles of object-oriented design, and why are they important?
 What are redundancy and failover strategies for load balancers, and how do they ensure high availability and fault tolerance?
 What are Functional VS Non-Functional requirements in system design? Explain with MicroService use case.
 Explain about blue green deployment strategy and compare with Canary?

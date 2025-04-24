@@ -169,6 +169,9 @@ What are Functional VS Non-Functional requirements in system design? Explain wit
 Explain about blue green deployment strategy and compare with Canary?
 Explain about Latency and Throughput  metrics in system design?
 
+Explain about High-Level Design (HLD) and Low-Level Design (LLD) in system design?
+Explain about CAP theorem?
+
 
 
 

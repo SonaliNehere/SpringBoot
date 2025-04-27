@@ -1,5 +1,7 @@
 JDK, JRE, and JVM?
 Stack and Heap
+Why is the main method in Java declared as public static void main(String[] args)?
+What Is the void Type and When is it preferable to Use It?
 Access Modifiers
 Why Is String an Immutable Class?
 String Intern

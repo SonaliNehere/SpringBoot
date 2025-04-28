@@ -4,20 +4,29 @@ Why is the main method in Java declared as public static void main(String[] args
 What Is the void Type and When is it preferable to Use It?
 Access Modifiers
 Why Is String an Immutable Class?
-String Intern
+What is the concept of String Intern?
+What happens when you create a String with a new keyword?
 JAR vs WAR vs EAR
 Java is strictly pass-by-value language?
 static, abstract and final keywords in Java?
 Difference between String, StringBuffer, and StringBuilder?
 String.format() 
-Enum 
+What Is an Enum and How to Use It?
 Two Types of Casting in Java?
+
 Is Java statically and strongly typed? 
 Does var keyword makes Java as a dynamically typed language?
+What are the two main categories of data types in Java?
 Why does char use 2 bytes in Java, and not 1 byte like in C/C++?
 What is the difference between float and double in Java? When would you use one over the other?
+What is widening and narrowing type conversion? Provide examples of each.
+What happens if you assign a larger data type to a smaller data type?
+How does Java handle type safety in mixed-type arithmetic operations?
+When should you use byte and short instead of int?
 What are wrapper classes in Java, and how do they relate to primitive types?
+What are the three types of variables in Java, and how are they different?
 difference between final, static, and static final variables
+
 OOPs
 What is Compile Time Polymorphism and Runtime Polymorphism?
 What are the different types of inheritance?
@@ -25,6 +34,7 @@ What is diamond problem in Java?
 difference between abstract class and interface?
 When to use abstract class VS when to use interface?
 constructor, copy constructor
+
 Exception handling
 What are the scenarios in which finally block will not get executed?
 How to use try-with-resources in Java?

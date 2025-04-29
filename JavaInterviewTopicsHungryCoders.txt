@@ -33,6 +33,7 @@ What are the different types of inheritance?
 What is diamond problem in Java?
 difference between abstract class and interface?
 When to use abstract class VS when to use interface?
+What is Constructor and different types of Constructors?
 constructor, copy constructor
 
 Exception handling

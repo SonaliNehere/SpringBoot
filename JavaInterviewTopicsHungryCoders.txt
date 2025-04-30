@@ -35,6 +35,7 @@ difference between abstract class and interface?
 When to use abstract class VS when to use interface?
 What is Constructor and different types of Constructors?
 constructor, copy constructor
+Is there a destructor concept in Java?
 
 Exception handling
 What are the scenarios in which finally block will not get executed?
@@ -42,10 +43,12 @@ How to use try-with-resources in Java?
 Difference Between a Checked and an Unchecked Exception?
 Difference Between an Unlabeled and a Labeled break Statement?
 Use of the Throw and Throws Keywords?
+How to Catch Multiple Exceptions?
 Difference Between an Error and Exception?
 How can you create a custom exception in Java?
-try-with-resources:
+Can you have a try block without a catch block in Java? - try-finally , try-with-resources:
 difference between StackOverflowError and OutOfMemoryError in Java?
+
 What is Java Garbage Collection and how does it work?
 What are the different garbage collection algorithms in Java?
 What is a memory leak in Java, and how can you detect it?

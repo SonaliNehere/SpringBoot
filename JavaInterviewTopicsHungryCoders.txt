@@ -53,9 +53,16 @@ What is Java Garbage Collection and how does it work?
 What are the different garbage collection algorithms in Java?
 What is a memory leak in Java, and how can you detect it?
 What are Soft, Weak, and Phantom references in Java
-How can you force garbage collection in Java? - System.gc();
+How can you force garbage collection in Java? -  System.gc() or Runtime.getRuntime().gc()
+What are the common JVM options for tuning garbage collection?
+Explain the internal Working of Java's G1 Garbage Collector and When to Use G1 GC?
+How does the garbage collector know which objects are reachable
 What are some of the Useful Annotations used in Java?
 What Are Meta-Annotations?
+What Are Repeating Annotations?
+Is It Possible to Extend Annotations and what is Indirect Extension?
+How to Limit the Elements in Which an Annotation Can Be Applied?
+
 Difference Between Primitive and Reference Types?
 Reflection in Java?
 Difference Between an Inner Class and a Static Nested Class?

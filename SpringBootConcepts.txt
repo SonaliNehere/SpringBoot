@@ -1,0 +1,87 @@
+what are build tools
+
+🔧 Apache Ant
+Ant is a task-based build tool. You write exact instructions (like "compile these files", "copy this folder", "create this jar") in an XML file called build.xml. It gives you full control, but you must define every step manually.
+Ant does not manage dependencies automatically. If you want to use external libraries (like JUnit or Gson), you need to download and manage the JARs yourself.
+It's great for small or highly customized projects, or when you want fine-grained control over each step. But as the project grows, it becomes repetitive and harder to maintain.
+
+📦 Apache Maven
+Maven is a declarative, convention-based build tool. Instead of writing how to do each task, you describe what your project needs (like group ID, dependencies, packaging type) in a pom.xml file.
+Maven manages dependencies automatically using a central repository. You just declare the library you want, and Maven downloads it.
+Maven expects your project to follow a standard structure, which simplifies configuration. It's better suited for larger projects, where consistency, automation, and dependency management matter.
+
+🧠 When to Use What:
+Use Ant if:
+You need custom build steps.
+Your project is small and doesn't use many dependencies.
+You want full manual control.
+
+Use Maven if:
+You want automatic dependency management.
+You prefer less manual setup.
+You're working on a medium to large project that follows conventions.
+
+
+What is Maven? - https://www.geeksforgeeks.org/what-is-maven/
+
+🔁 IoC – Inversion of Control
+Meaning: You give up control of creating and managing objects to the Spring container.
+Instead of your code creating dependencies, Spring injects them.
+Example: You don’t create new objects — Spring does it for you.
+🧠 Think of it like a restaurant:
+You (developer) order the dish, but the chef (Spring) cooks and serves it. You don’t control how it’s made.
+
+🔌 DI – Dependency Injection
+A type of IoC where dependencies (objects) are injected into your class.
+Spring can inject dependencies via:
+Constructor injection
+Setter injection - 
+Field injection (with annotations)
+
+💡 Simple Analogy:
+IoC = Spring is in control of creating and wiring objects.
+DI = The way Spring provides those objects (dependencies) to your classes.
+
+SpringApplication.run(MyApplication.class, args); - creates container for you, return type is ApplicationContext
+Starts the Spring Boot application.
+Creates the ApplicationContext (IoC container).
+Performs classpath scan to find components (@Component, @Service, etc.). 
+Injects dependencies using @Autowired, etc.
+Starts embedded servers like Tomcat (if it's a web app).
+Runs any CommandLineRunner or ApplicationRunner beans.
+
+@Component - using this annotation on class, spring will understand that this is a class that i have to manage and spring will
+ create object for you in the container.
+ @Component is a Spring annotation that marks a Java class as a Spring-managed bean. This means Spring will automatically detect
+ and create an object (bean) of this class during the application startup.
+ 
+@Autowired - @Autowired is used in Spring to automatically inject dependencies. It tells Spring, "Hey, please provide me the 
+	required bean here."
+	Whenever one class needs another class to function, use @Autowired to let Spring handle the wiring.
+🛠 Where you can use @Autowired:
+On constructors - even if not used @Autowired, it will work
+On setter methods
+On fields (not recommended for testability)
+🔍 How it works:
+Spring checks its ApplicationContext for a bean of matching type.
+If found, it injects it.
+If multiple candidates exist, it throws an error (unless you use @Qualifier).
+
+@Primary - If Spring finds two or more beans of the same type, it gets confused and throws an error. @Primary solves this by 
+	marking one default bean.
+	
+@Qualifier - Qualifier is used along with @Autowired when multiple beans of the same type exist, and you want to specify exactly
+	which one to inject.
+✅ Use @Qualifier when:
+You have multiple beans of the same type.
+You want fine control over which bean to inject.
+You don't want to rely on @Primary.
+
+
+
+
+
+
+
+
+

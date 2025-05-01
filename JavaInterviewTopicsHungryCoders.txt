@@ -77,6 +77,9 @@ How does the final keyword affect class inheritance and method overriding?
 What Are the Wrapper Classes and what is autoboxing and unboxing in Java?
 What Is a Var-Arg and how to use it? What are benefits and limitations?
 
+What are regular expressions and how are they used in Java?
+
+
 What Is the Difference Between a Process and a Thread?
 How can we create a Thread in Java?
 Describe the Different States of a Thread?

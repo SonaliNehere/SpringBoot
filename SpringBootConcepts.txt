@@ -77,6 +77,136 @@ You have multiple beans of the same type.
 You want fine control over which bean to inject.
 You don't want to rely on @Primary.
 
+@Controller - @Controller is a specialized Spring annotation used to define a class as a Spring MVC controller that handles 
+web requests.
+	✅ What it does:
+Marks the class as a web controller.
+Handles incoming HTTP requests (like GET, POST).
+Returns views (HTML pages) by default 
+
+@Controller vs @RestController:
+@Controller → returns views (HTML/JSP).
+@RestController → returns data (JSON/XML).
+
+✅ Use @Controller when:
+You're building a web application with views.
+You want to use Thymeleaf, JSP, or other template engines.
+
+@RequestMapping : @RequestMapping is used to map web requests (like /home, /login) to specific controller methods or classes
+ in a Spring application.
+ 
+@ResponseBody : @ResponseBody tells Spring to return the method's return value directly as the HTTP response (usually as JSON
+ or plain text), instead of rendering a view (like JSP or HTML).
+✅ Use Case:
+You use @ResponseBody in a REST API when you want to send data (like JSON) to the client, not HTML pages.
+
+✅ Shortcut:
+If you use @RestController (instead of @Controller), you don’t need @ResponseBody on each method — it's implied automatically.
+@RestController = @Controller + @ResponseBody
+
+🔄 Spring Boot MVC Flow :
+Here’s a step-by-step breakdown of how a request flows in a Spring Boot MVC web application:
+
+🌐 1. User Sends a Request
+A user hits a URL in the browser or an API client (e.g., Postman):
+GET http://localhost:8080/hello
+
+🚪 2. Embedded Server Receives Request
+Spring Boot uses an embedded server (like Tomcat) that listens on port 8080 by default and receives the request.
+
+🔀 3. DispatcherServlet Handles the Request
+Spring Boot auto-configures DispatcherServlet, which acts as the front controller in the Spring MVC framework. It does the
+ following:
+Finds the correct controller method for the request URL.
+Delegates request processing.
+
+🎮 4. Controller Processes the Request
+@RestController
+public class HelloController {
+    
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "Hello from Spring Boot!";
+    }
+}
+DispatcherServlet routes the /hello request to sayHello() method.
+The method runs and returns "Hello from Spring Boot!".
+
+📦 5. Response is Sent Back
+If @ResponseBody or @RestController is used, Spring sends the return value directly as the HTTP response (e.g., plain text 
+or JSON).
+Otherwise, Spring would try to render a view (like an HTML page).
+
+🧭 Flow Summary:
+User Request → Embedded Server (Tomcat) → DispatcherServlet
+            → Controller → Business Logic
+            → Response (JSON, Text, HTML) → Back to User
+			
+❓ Are Spring MVC and Spring Boot MVC the same?
+✅ Conceptually, YES — both use the Spring MVC framework under the hood.
+❌ But technically, NO — there are differences in setup and configuration.
+
+📌 Difference in Simple Terms:
+Feature				Spring MVC								Spring Boot MVC
+Configuration		Manual (XML or Java-based)				Auto-configured (almost zero setup)
+Startup				Needs web.xml / servlet setup			Uses SpringApplication.run()
+Dependencies		You add everything manually				Starter dependencies simplify setup
+Server				Needs external server (e.g., Tomcat)	Comes with embedded server (e.g., Tomcat)
+Speed to develop	Slower (more boilerplate)				Faster (minimal setup, focus on logic)
+
+
+@Service - @Service is a Spring annotation used to mark a service class — a class that contains business logic.
+✅ What it does:
+Marks the class as a Spring-managed bean.
+Makes it eligible for component scanning and dependency injection.
+Semantically indicates that the class holds business logic, separating it from @Component or @Repository.
+✅ When to Use @Service:
+For business logic layer.
+When you want to keep a clean architecture (Controller → Service → Repository).
+To make the class discoverable by Spring and injectable where needed.
+
+lombok : Lombok is a Java library that helps you reduce boilerplate code like getters, setters, constructors, and more by 
+using annotations.
+It auto-generates:
+Getters & Setters
+toString()
+equals() and hashCode()
+Constructor
+
+🔧 Common Lombok Annotations:
+Annotation	Purpose
+@Getter / @Setter	Generates getters/setters
+@Data				Combines getter, setter, toString, equals, hashCode
+@NoArgsConstructor	No-arg constructor
+@AllArgsConstructor	All-arg constructor
+@Builder			Creates builder pattern
+@Slf4j				Logger without manual setup
+
+"
+import lombok.Data;
+@Data
+public class User {
+    private String name;
+    private int age;
+}
+"
+
+@PathVariable - @PathVariable is used in Spring MVC or Spring Boot to extract values from the URL path and bind them to 
+	method parameters in your controller.
+✅ When to Use:
+When you want to extract data directly from the URL path.
+For clean, RESTful URLs like /products/100 or /orders/456.
+
+@RequestBody - @RequestBody is used to bind the body of an HTTP request (usually JSON) to a Java object in a controller method.
+	@RequestBody tells Spring to convert JSON/XML → Java Object using Jackson (by default).
+	pCommon in POST, PUT, or any request that sends data in the body.
+
+jackson library
+
+
+
+
+
 
 
 

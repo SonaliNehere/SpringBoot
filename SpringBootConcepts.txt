@@ -1,3 +1,5 @@
+go through - simpleWebApp for crud operation, basic flow and exception handling, myApp for dependency injection 
+
 what are build tools
 
 🔧 Apache Ant
@@ -6,9 +8,12 @@ Ant does not manage dependencies automatically. If you want to use external libr
 It's great for small or highly customized projects, or when you want fine-grained control over each step. But as the project grows, it becomes repetitive and harder to maintain.
 
 📦 Apache Maven
-Maven is a declarative, convention-based build tool. Instead of writing how to do each task, you describe what your project needs (like group ID, dependencies, packaging type) in a pom.xml file.
-Maven manages dependencies automatically using a central repository. You just declare the library you want, and Maven downloads it.
-Maven expects your project to follow a standard structure, which simplifies configuration. It's better suited for larger projects, where consistency, automation, and dependency management matter.
+Maven is a declarative, convention-based build tool. Instead of writing how to do each task, you describe what your project 
+	needs (like group ID, dependencies, packaging type) in a pom.xml file.
+Maven manages dependencies automatically using a central repository. You just declare the library you want, and Maven downloads
+    it.
+Maven expects your project to follow a standard structure, which simplifies configuration. It's better suited for larger projects
+	, where consistency, automation, and dependency management matter.
 
 🧠 When to Use What:
 Use Ant if:
@@ -199,9 +204,359 @@ For clean, RESTful URLs like /products/100 or /orders/456.
 
 @RequestBody - @RequestBody is used to bind the body of an HTTP request (usually JSON) to a Java object in a controller method.
 	@RequestBody tells Spring to convert JSON/XML → Java Object using Jackson (by default).
-	pCommon in POST, PUT, or any request that sends data in the body.
+	Common in POST, PUT, or any request that sends data in the body.
 
-jackson library
+jackson library - Jackson is a popular Java library used to convert Java objects to JSON and JSON to Java objects.
+	It is the default JSON parser in Spring Boot.
+🔄 In Spring Boot:
+You use Jackson indirectly when you use @RequestBody, @ResponseBody, or return an object from a REST controller — Spring uses
+ Jackson under the hood.
+ 
+@GetMapping
+@PostMapping
+@PutMapping
+@DeleteMapping
+
+🔌 1. JDBC (Java Database Connectivity)
+A low-level Java API for directly interacting with databases using SQL.
+You write SQL manually and handle connections, statements, and result sets.
+"
+Connection conn = DriverManager.getConnection(...);
+PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users");
+ResultSet rs = stmt.executeQuery();
+"
+🟠 Cons: Verbose, repetitive, error-prone.
+
+🏗️ 2. ORM (Object-Relational Mapping)
+A concept, not a tool.
+It maps Java objects to database tables and vice versa.
+Helps avoid writing raw SQL.
+➡️ Tools like Hibernate are ORM frameworks.
+
+📦 3. JPA (Java Persistence API)
+A standard specification (like an interface) for ORM in Java.
+It defines how to map, persist, and manage Java objects with databases.
+Doesn’t do anything by itself — needs a provider like Hibernate to work.
+
+⚙️ 4. Hibernate
+A popular implementation of JPA (and more).
+Can work with or without JPA.
+Handles object mapping, relationships, lazy loading, caching, etc.
+"
+@Entity
+public class User {
+  @Id
+  private Long id;
+  private String name;
+}
+"
+🎯 Summary:
+Term					What It Is				Level		Notes
+JDBC					API for SQL in Java		Low-level	Manual SQL, boilerplate code
+ORM						Concept					Mid-level	Mapping objects to tables
+JPA						Specification (API)		High-level	Needs implementation like Hibernate
+Hibernate				ORM Tool (JPA impl.)	High-level	Reduces SQL, handles persistence
+
+🧱 Think of it like building a house:
+ORM is the idea of how to build a house:
+→ "Let’s match Java classes to database tables instead of writing SQL manually."
+
+JPA is the official blueprint:
+→ "Here’s a standard set of rules to follow for ORM in Java."
+
+Hibernate is the worker that follows that blueprint:
+→ "I will do the actual work for you, based on JPA rules (or even more)."
+
+🎯 In even simpler terms:
+ORM = Concept (object ↔ table)
+JPA = Rules/interface
+Hibernate = Tool that follows JPA to do ORM
+
+✅ When you write code using JPA annotations, and use Spring Data JPA, behind the scenes Hibernate is doing the real work.
+
+In-Memory Database :
+An In-Memory Database is a database that stores all data directly in the system’s RAM (main memory) instead of on disk. 
+This makes it much faster for read/write operations but temporary by nature.
+
+🚀 Key Features:
+Super fast (since RAM access is quicker than disk)
+Temporary – data is lost when the application/server stops
+
+
+🧪 H2 Database :
+H2 is a lightweight, in-memory database written in Java. It is perfect for testing, prototyping, and development.
+
+⚙️ Key Features:
+🧠 In-Memory or File-based modes
+🐘 Fast and easy to use
+🧪 Ideal for unit tests and Spring Boot apps
+💻 Comes with a web-based console (http://localhost:8080/h2-console)
+
+✅ When to Use H2:
+During local development
+For integration tests
+When you want a temporary database without installing anything
+
+# application.properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.h2.console.enabled=true
+spring.jpa.show-sql=true // implemented queries will be visible in console
+
+
+@Repository : @Repository is a Spring annotation used to indicate that a class provides CRUD operations (Create
+	, Read, Update, Delete) on a database, typically interacting with a JPA or ORM framework like Hibernate.
+	
+✅ Purpose:
+Marks the class as a Data Access Object (DAO)
+Enables automatic exception translation (converts database exceptions into Spring’s DataAccessException)
+Helps Spring detect and manage it as a bean via component scanning
+
+📦 Example:
+"
+@Repository
+public class UserRepository {
+    
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public User findById(Long id) {
+        return entityManager.find(User.class, id);
+    }
+
+    public void save(User user) {
+        entityManager.persist(user);
+    }
+}
+"
+
+Or if you're using Spring Data JPA, you usually don't even write the implementation:
+"
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findByName(String name);
+}
+"
+Spring automatically provides the implementation at runtime.
+
+🛠️ Flow Summary:
+Client calls /users (GET/POST)
+Controller handles the request and calls the Service
+Service contains business logic and calls the Repository
+Repository accesses the database
+Response flows back in reverse
+	
+@Entity : @Entity is a JPA annotation used to mark a Java class as a database table.
+
+It tells Spring/Hibernate:
+👉 “This class should be mapped to a table in the database.”
+
+✅ Key Features:
+The class must have a no-arg constructor
+It should have a primary key annotated with @Id
+Used in combination with @Table, @Column, etc. (optional)
+
+🧱 Example:
+"
+import jakarta.persistence.*;
+
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String email;
+
+    // Getters and setters
+}
+"
+
+💡 What Happens Behind the Scenes?
+Spring Boot + JPA + Hibernate will:
+Create a table User in the database (if not exists)
+Map each field (name, email) to a column
+Handle insert, update, delete, and fetch operations
+
+Great! Here's a quick explanation of related JPA annotations used with @Entity:
+
+🆔 @Id
+Marks the primary key of the entity (unique identifier).
+"
+@Id
+private Long id;
+"
+
+🔢 @GeneratedValue
+Specifies how the primary key should be auto-generated.
+Common strategies:
+@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment (commonly used with MySQL)
+@GeneratedValue(strategy = GenerationType.AUTO)     // Default (let JPA choose)
+@GeneratedValue(strategy = GenerationType.SEQUENCE) // Uses a database sequence
+@GeneratedValue(strategy = GenerationType.TABLE)    // Uses a table to simulate sequence
+
+🧱 @Table (optional)
+Lets you specify the table name and other details.
+"
+@Entity
+@Table(name = "users")
+public class User { ... }
+"
+
+🧩 @Column (optional)
+Lets you customize each column name and behavior.
+"
+@Column(name = "user_name", nullable = false, length = 50)
+private String name;
+"
+
+Here’s a complete example of a JPA @Entity class using @Id, @GeneratedValue, @Table, and @Column annotations:
+
+✅ Full Example: User Entity
+"
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")  // Database table name
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-increment primary key
+    private Long id;
+
+    @Column(name = "user_name", nullable = false, length = 50)  // Custom column name
+    private String name;
+
+    @Column(unique = true, nullable = false)  // Email must be unique and not null
+    private String email;
+
+    @Column(name = "created_at")
+    private String createdAt;
+
+    // Constructors
+    public User() {}
+
+    public User(String name, String email, String createdAt) {
+        this.name = name;
+        this.email = email;
+        this.createdAt = createdAt;
+    }
+
+    // Getters & Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getCreatedAt() { return createdAt; }
+    public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
+}
+"
+
+📌 Summary:
+@Entity → Marks the class as a JPA entity.
+@Table(name = "users") → Maps it to a table named users.
+@Id → Primary key.
+@GeneratedValue → Auto-generates ID.
+@Column → Customizes the column details.
+
+
+
+JpaRepository : JpaRepository is a Spring Data interface that provides ready-made methods for working with databases using JPA.
+	It is an extension of CrudRepository and PagingAndSortingRepository and gives you full CRUD + pagination + sorting + JPA 
+	features — without writing SQL or implementation code.
+
+✅ Common Methods in JpaRepository:
+You get these automatically:
+save(entity) – Insert or update
+findById(id) – Get entity by ID
+findAll() – Get all records
+deleteById(id) – Delete by ID
+count() – Total number of rows
+existsById(id) – Check if entity exists
+
+📌 Example:
+"
+public interface UserRepository extends JpaRepository<User, Long> {
+    // Custom finder method
+    List<User> findByName(String name);
+}
+"
+Spring automatically generates the implementation based on method name!
+
+✅ Why use JpaRepository?
+No boilerplate code
+Built-in methods for common DB operations
+Custom query support using method names or @Query
+
+✅ @Repository vs JpaRepository
+Aspect		@Repository									JpaRepository
+Type		Annotation									Interface
+Purpose		Marks a class as a DAO						Provides full CRUD + pagination support
+Requires 	code?	Yes, you write methods manually		No, Spring generates them for you
+Used for	Custom/Manual DB access classes	Standard 	Spring Data JPA repositories
+
+ResponseEntity - ResponseEntity is a class in Spring that represents the entire HTTP response, including:
+Status code (like 200 OK, 404 Not Found)
+Headers
+Body (the actual data or message)
+
+Exception Handling : 
+@RestControllerAdvice : @RestControllerAdvice is a Spring annotation used to handle exceptions globally across all 
+@RestController classes.
+It combines two key things:
+@ControllerAdvice – for global exception handling.
+@ResponseBody – automatically returns the response in JSON or plain text.
+✅ Why use it?
+To centralize your error handling instead of repeating try-catch in every controller.
+
+
+🔥 Common built-in exceptions you can use:
+Exception					When to use
+IllegalArgumentException	Invalid input arguments
+ResponseStatusException		Custom status + message
+HttpClientErrorException	For REST client calls (if applicable)
+NoSuchElementException		Entity not found (like from Optional)
+AccessDeniedException		Security/authentication related
+
+do i need to add built in exceptions also in global class : You don’t need to, but you can — and often should — add built-in 
+	exceptions to your global exception handler class if you want to:
+
+✅ Why add built-in exceptions to @RestControllerAdvice?
+Because if exceptions like IllegalArgumentException, ResponseStatusException, or NoSuchElementException are thrown, you may 
+	want to:
+Return a clean, consistent error response
+Avoid exposing stack traces or technical messages
+Customize status codes and messages
+
+	
+@ExceptionHandler : @ExceptionHandler is a Spring annotation used inside a controller (or globally with @RestControllerAdvice) to 
+	handle specific exceptions in a clean and centralized way.
+🔄 Summary:
+Use @ExceptionHandler to catch specific exceptions.
+Place it in a controller for local handling or in @RestControllerAdvice for global handling.
+Return ResponseEntity for full control over response format.
+
+Resttemplate
+
+
+
+
+
+
+
+
+
+
+
 
 
 

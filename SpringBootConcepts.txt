@@ -1,4 +1,5 @@
-go through - simpleWebApp for crud operation, basic flow and exception handling, myApp for dependency injection 
+go through - simpleWebApp for crud operation, basic flow , exception handling, webclient, restTemplate, 
+			 myApp for dependency injection 
 
 what are build tools
 
@@ -545,7 +546,268 @@ Use @ExceptionHandler to catch specific exceptions.
 Place it in a controller for local handling or in @RestControllerAdvice for global handling.
 Return ResponseEntity for full control over response format.
 
+Call Another Project in spring boot
+
 Resttemplate
+Correct ✅ — RestTemplate is deprecated in Spring Boot 3.x / Spring Framework 6.x.
+❌ Why you shouldn't use RestTemplate in Spring Boot 3+
+It’s marked as deprecated for future development.
+No new features or improvements are being added to it.
+Not recommended for reactive or modern apps.
+
+✅ Use WebClient Instead
+WebClient is:
+Non-blocking and reactive (but can be used in blocking mode too).
+More flexible.
+The official replacement for RestTemplate.
+
+🧠 Summary
+Feature				RestTemplate		WebClient
+Blocking			Yes					Optional (block or not)
+Deprecated?			✅ Yes in Spring 6	❌ No
+Reactive support	❌ No				✅ Yes
+Recommended in 3+	❌ No				✅ Yes
+
+WebClient : 
+📌 Key Differences
+Feature				Synchronous (block())			Asynchronous (Mono)
+Thread blocking		✅ Yes							❌ No (non-blocking)
+Scalability			❌ Limited						✅ Better for many requests
+Return type			String							Mono<String>
+Use case			Simple/small traffic calls		High-performance systems
+
+✅ @Configuration and @Bean in Spring (Simple Explanation)
+🧩 @Configuration
+It marks a class as a source of bean definitions.
+Spring will scan this class and look for methods annotated with @Bean to register them in the Spring container.
+
+🔹 Think of it as a Java-based alternative to XML configuration.
+"
+@Configuration
+public class AppConfig {
+    // This class will contain @Bean methods
+}
+"
+
+🔧 @Bean
+It tells Spring that the method returns a bean that should be managed by the Spring container.
+The method is called only once, and the returned object is registered as a Spring bean (like a singleton).
+"
+@Bean
+public RestTemplate restTemplate() {
+    return new RestTemplate();
+}
+"
+
+✅ Combined Use Example:
+"
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate(); // Spring will manage this bean
+    }
+}
+"
+
+Now you can inject RestTemplate anywhere in your project:
+"
+@Autowired
+private RestTemplate restTemplate;
+"
+
+🎯 When to use:
+Use @Configuration + @Bean when you want to explicitly define and configure beans in code.
+Especially useful when:
+A bean needs some custom settings
+The bean is from an external library and not annotated with Spring annotations
+
+✅ What is a Bean in Spring?
+A Bean in Spring is simply an object that is managed by the Spring container.
+
+📌 In Simple Words:
+If you create a class and register it with Spring (using annotations like @Component, @Service, or via @Bean method), Spring 
+	takes care of:
+Creating the object (instantiation)
+Managing its lifecycle
+Injecting it wherever needed (@Autowired)
+
+🧠 Example:
+"
+@Component
+public class MyService {
+    public void serve() {
+        System.out.println("Service called");
+    }
+}
+"
+Now Spring knows this class is a bean. You can inject and use it:
+
+"
+@RestController
+public class MyController {
+
+    @Autowired
+    private MyService myService;
+
+    @GetMapping("/test")
+    public String test() {
+        myService.serve();
+        return "OK";
+    }
+}
+"
+
+🔁 Summary:
+A Spring Bean is a Java object created and managed by the Spring IoC container.
+It can be auto-injected wherever needed.
+You can define it via:
+@Component, @Service, @Repository, @Controller
+@Bean in a @Configuration class
+
+
+@Configuration and @Component both register classes as Spring beans, they serve different purposes and behave differently 
+	under the hood.
+
+✅ Key Differences Between @Configuration and @Component:
+🧩 1. Purpose
+Annotation			Purpose
+@Component			General-purpose annotation to mark a class as a Spring-managed bean (POJO/service/controller/etc.).
+@Configuration		Specialized component that defines bean-producing methods using @Bean. It’s meant for configuration.
+
+🧠 2. Proxy Behavior (CGLIB)
+@Configuration classes are proxied by Spring (using CGLIB) to ensure that @Bean methods return singleton beans even when called 
+	multiple times.
+
+"
+@Configuration
+public class AppConfig {
+    @Bean
+    public MyService myService() {
+        return new MyService();
+    }
+}
+"
+➡ Even if myService() is called multiple times, it returns the same singleton bean.
+
+But with:
+"
+@Component
+public class AppConfig {
+    @Bean
+    public MyService myService() {
+        return new MyService();
+    }
+}
+"
+➡ Each call to myService() may return a new instance, breaking singleton behavior.
+
+🧪 3. Use Case
+Use @Component when...												Use @Configuration when...
+You're writing a regular service, controller, or repository.		You want to define beans using methods with @Bean.
+You don't need to manually create other beans inside the class.		You need fine-grained control over bean creation.
+
+✅ Summary:
+@Component: Tells Spring to create an object from this class and manage it.
+@Configuration: Tells Spring this class provides beans, and Spring should manage those using special proxy rules to ensure 
+	singleton behavior.
+	
+Let’s walk through a clear example that demonstrates the singleton behavior difference between @Configuration and @Component 
+	when using @Bean methods.
+	
+✅ 0. Common Classes
+"
+// Engine.java
+public class Engine {
+    public Engine() {
+        System.out.println("Engine instance created");
+    }
+}
+"
+
+"
+// Car.java
+public class Car {
+    private final Engine engine;
+
+    public Car(Engine engine) {
+        this.engine = engine;
+        System.out.println("Car instance created");
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+}
+"
+
+✅ Example 1: Using @Configuration
+"
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public Engine engine() {
+        return new Engine();
+    }
+
+    @Bean
+    public Car car() {
+        return new Car(engine()); // Calls the engine() method
+    }
+}
+"
+Output when used:
+"
+Car car = context.getBean(Car.class);
+System.out.println(car.getEngine()); // Engine@123
+
+Engine engine = context.getBean(Engine.class);
+System.out.println(engine);         // Engine@123 (Same instance)
+"
+➡ engine() method is called once, and the same bean is reused thanks to Spring proxying the @Configuration class.
+
+❌ Example 2: Using @Component
+"
+@Component
+public class AppConfig {
+
+    @Bean
+    public Engine engine() {
+        return new Engine();
+    }
+
+    @Bean
+    public Car car() {
+        return new Car(engine()); // Calls engine() directly
+    }
+}
+"
+
+Output when used:
+"
+Car car = context.getBean(Car.class);
+System.out.println(car.getEngine()); // Engine@123
+
+Engine engine = context.getBean(Engine.class);
+System.out.println(engine);         // Engine@456 (Different instance!)
+"
+➡ engine() method is called twice, because @Component class isn’t proxied, so it doesn’t enforce singleton behavior for @Bean
+ methods.
+
+🧠 Conclusion:
+Annotation			@Bean method called once?	Singleton preserved?
+@Configuration		✅ Yes						✅ Yes
+@Component			❌ No						❌ No
+
+
+
+
+
+
+
+
 
 
 

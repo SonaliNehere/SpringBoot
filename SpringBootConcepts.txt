@@ -801,6 +801,9 @@ Annotation			@Bean method called once?	Singleton preserved?
 @Configuration		✅ Yes						✅ Yes
 @Component			❌ No						❌ No
 
+@CrossOrigin
+@JsonFormat
+ResponseEntity
 
 
 

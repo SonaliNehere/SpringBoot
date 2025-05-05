@@ -805,6 +805,11 @@ Annotation			@Bean method called once?	Singleton preserved?
 @JsonFormat
 ResponseEntity
 
+@Lob
+@RequestPart
+MultiPartFile
+
+
 
 
 

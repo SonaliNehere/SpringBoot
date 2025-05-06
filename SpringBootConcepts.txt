@@ -801,13 +801,226 @@ Annotation			@Bean method called once?	Singleton preserved?
 @Configuration		✅ Yes						✅ Yes
 @Component			❌ No						❌ No
 
+@CrossOrigin - The @CrossOrigin annotation in Spring Boot is used to enable Cross-Origin Resource Sharing (CORS) for your REST
+	APIs. It allows your backend to respond to requests coming from a different domain, port, or protocol — commonly from a 
+	frontend running on another server like http://localhost:4200.
+✅ Basic Usage:
+"
 @CrossOrigin
-@JsonFormat
-ResponseEntity
+@RestController
+public class MyController {
+    
+    @GetMapping("/data")
+    public String getData() {
+        return "Hello from backend!";
+    }
+}
+"
+This allows all domains to access /data.
 
+🔒 Restricting to Specific Origin:
+"
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
+public class MyController {
+    // Only requests from localhost:4200 are allowed
+}
+"
+
+🌍 On Specific Methods Only:
+"
+@RestController
+public class MyController {
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/data")
+    public String getData() {
+        return "Hello Angular!";
+    }
+}
+"
+
+⚙️ Global Configuration (for all controllers):
+You can define CORS globally in a configuration class:
+"
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**") // all endpoints
+                .allowedOrigins("http://localhost:4200")
+                .allowedMethods("GET", "POST", "PUT", "DELETE");
+    }
+}
+"
+
+@JsonFormat :  The @JsonFormat annotation in Jackson (used in Spring Boot) is used to control the serialization and 
+	deserialization format of Java objects — especially useful for dates, times, and enums when converting to/from JSON.
+
+✅ Common Use Case: Format a Date or LocalDateTime
+"
+@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+private LocalDateTime createdAt;
+"
+
+This will ensure the createdAt field is formatted as a string in JSON like:
+"
+"createdAt": "2025-05-05 14:30:00"
+"
+
+
+@Lob : The @Lob annotation in JPA (Java Persistence API) is used to indicate that a particular field should be persisted as a 
+	Large Object in the database. This is commonly used for storing large text or binary data, such as:
+Long descriptions, HTML content, Images, Files, Large JSON strings
+
+✅ Usage for Text (CLOB - Character Large Object):
+"
 @Lob
-@RequestPart
-MultiPartFile
+private String longDescription;
+"
+This tells JPA to store longDescription as a CLOB in the database.
+
+✅ Usage for Binary Data (BLOB - Binary Large Object):
+"
+@Lob
+private byte[] imageData;
+"
+This tells JPA to store imageData as a BLOB, suitable for storing files or images.
+
+💡 Notes:
+JPA will automatically choose CLOB for String and BLOB for byte[].
+Works with databases like MySQL, PostgreSQL, Oracle, etc.
+Combine with @Column for additional constraints (like nullable, length, etc.).
+
+🧪 Example Entity:
+"
+@Entity
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    @Lob
+    private String description;  // CLOB
+
+    @Lob
+    private byte[] image;       // BLOB
+}
+"
+
+
+@RequestPart :  The @RequestPart annotation in Spring Boot is used when handling multipart/form-data requests, particularly 
+	when a request contains both files and JSON (or form fields and files) — commonly used for uploading files along with
+	metadata.
+
+✅ When to Use @RequestPart
+Use @RequestPart when:
+You're handling a file upload along with non-file data.
+The request is of type multipart/form-data.
+You want to extract specific parts (e.g., a file, a JSON object).
+
+
+MultiPartFile : MultipartFile is a Spring interface used to handle file uploads from HTML forms or HTTP requests with 
+	multipart/form-data encoding.
+It allows you to:
+Access the file content
+Get metadata like filename and content type
+Save the file to disk or database
+
+✅ Typical Use Case: Upload a File
+🔧 Backend Controller:
+"
+@PostMapping("/upload")
+public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+    String fileName = file.getOriginalFilename();
+    long size = file.getSize();
+
+    // Optional: save file to disk
+    try {
+        file.transferTo(new File("uploads/" + fileName));
+    } catch (IOException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Upload failed");
+    }
+
+    return ResponseEntity.ok("File uploaded successfully: " + fileName);
+}
+"
+
+🌐 What is a Servlet?
+A Servlet is a Java class that handles HTTP requests and generates responses, typically used in Java EE or Jakarta EE web 
+applications.
+
+✅ Features:
+Runs on a servlet container (like Apache Tomcat)
+Handles GET, POST, PUT, DELETE requests
+Generates dynamic content (usually HTML or JSON)
+Pure Java-based (logic-heavy)
+
+🧪 Simple Example:
+"
+@WebServlet("/hello")
+public class HelloServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h1>Hello from Servlet!</h1>");
+    }
+}
+"
+
+📄 What is JSP (JavaServer Pages)?
+JSP is a view technology that allows you to embed Java code in HTML pages to create dynamic web content — easier to use than 
+servlets for generating HTML.
+
+✅ Features:
+Easier HTML generation (compared to servlet out.println)
+Uses special tags like <%= %> for embedding Java
+Can access request, session, and application objects directly
+
+🧪 Simple JSP Example (hello.jsp):
+"
+<%@ page language="java" contentType="text/html" %>
+<html>
+<head><title>Hello JSP</title></head>
+<body>
+    <h1>Hello, <%= request.getParameter("name") %>!</h1>
+</body>
+</html>
+"
+Access it via: http://localhost:8080/your-app/hello.jsp?name=Sonali
+
+🔁 Servlet vs JSP: Quick Comparison
+Feature				Servlet									JSP
+Role				Controller 								/ Logic	View / Presentation
+Syntax				Pure Java								HTML + Java mixed
+Code Maintenance	More verbose					Cleaner for HTML generation
+Usage				Request processing, routing		Display output, UI
+
+🎯 Modern Practice
+Today, developers often use:
+Servlets + JSP in legacy projects or when learning the basics
+Spring Boot + Thymeleaf or Spring MVC + React/Angular in real-world applications
+
+
+
+owasp
+
+custom login
+
+Behind the scene everything is servlet even the controller also
+
+spring.security.user.name=navin
+spring.security.user.password=telusko
+
+csrf token
+
+
+
+
 
 
 

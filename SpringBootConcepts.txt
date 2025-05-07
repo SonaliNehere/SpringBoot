@@ -29,6 +29,28 @@ You're working on a medium to large project that follows conventions.
 
 
 What is Maven? - https://www.geeksforgeeks.org/what-is-maven/
+Maven is a build automation tool developed using the Java programming language. It is primarily used for Java-based projects
+ to manage the build process, including source code compilation, testing, packaging, and more. Maven utilizes the Project 
+ Object Model (POM), where the pom.xml file describes the project’s configuration and dependency management.
+
+Features of Maven:
+The Maven Build Automation tool provides a lot of features to make the development easy. 
+Below we listed them
+Dependency Management: Maven simplifies the process of including third external libraries in our project and It can download 
+	automatically required libraries.
+Standardized Project Structure: It provides a standard project folder structure like source code in one package, testing code
+	in one package, and others.
+Build Life cycle: The Maven different build phases to build the project.
+Plugins: It supports different plugins these are perform compilation, testing, packaging, deployment, documentation generation,
+	and others.
+Project Object Model: Every maven Project have parent pom.xml file which can decided the configuration and dependency 
+	management of the maven project.
+Central Repository: Maven uses a central repository for downloading project dependencies, which simplifies dependency 
+	management.
+Build Profiles: The Maven build cycle handles different profiles like development, QA, production and others
+Reporting and Documentation: Maven can generate various types of project reports and documentation using plugins. These include
+	Javadoc, code coverage reports, and site generation.
+IDE Integration: It support different IDEs like STS, Eclipse, IntelliJ IDEA, and NetBeans.
 
 🔁 IoC – Inversion of Control
 Meaning: You give up control of creating and managing objects to the Spring container.
@@ -58,8 +80,8 @@ Runs any CommandLineRunner or ApplicationRunner beans.
 
 @Component - using this annotation on class, spring will understand that this is a class that i have to manage and spring will
  create object for you in the container.
- @Component is a Spring annotation that marks a Java class as a Spring-managed bean. This means Spring will automatically detect
- and create an object (bean) of this class during the application startup.
+ @Component is a Spring annotation that marks a Java class as a Spring-managed bean. This means Spring will automatically 
+ detect and create an object (bean) of this class during the application startup.
  
 @Autowired - @Autowired is used in Spring to automatically inject dependencies. It tells Spring, "Hey, please provide me the 
 	required bean here."
@@ -512,7 +534,7 @@ Body (the actual data or message)
 
 Exception Handling : 
 @RestControllerAdvice : @RestControllerAdvice is a Spring annotation used to handle exceptions globally across all 
-@RestController classes.
+	@RestController classes.
 It combines two key things:
 @ControllerAdvice – for global exception handling.
 @ResponseBody – automatically returns the response in JSON or plain text.
@@ -539,8 +561,8 @@ Avoid exposing stack traces or technical messages
 Customize status codes and messages
 
 	
-@ExceptionHandler : @ExceptionHandler is a Spring annotation used inside a controller (or globally with @RestControllerAdvice) to 
-	handle specific exceptions in a clean and centralized way.
+@ExceptionHandler : @ExceptionHandler is a Spring annotation used inside a controller (or globally with @RestControllerAdvice)
+	to handle specific exceptions in a clean and centralized way.
 🔄 Summary:
 Use @ExceptionHandler to catch specific exceptions.
 Place it in a controller for local handling or in @RestControllerAdvice for global handling.
@@ -801,6 +823,9 @@ Annotation			@Bean method called once?	Singleton preserved?
 @Configuration		✅ Yes						✅ Yes
 @Component			❌ No						❌ No
 
+
+
+
 @CrossOrigin - The @CrossOrigin annotation in Spring Boot is used to enable Cross-Origin Resource Sharing (CORS) for your REST
 	APIs. It allows your backend to respond to requests coming from a different domain, port, or protocol — commonly from a 
 	frontend running on another server like http://localhost:4200.
@@ -1017,6 +1042,10 @@ spring.security.user.name=navin
 spring.security.user.password=telusko
 
 csrf token
+
+✅ Classpath (in Java) is:
+The path that tells the Java compiler and JVM where to look for classes, packages, and resources.
+In Spring Boot, you don't usually set the classpath manually — tools like Maven/Gradle handle it automatically.
 
 
 

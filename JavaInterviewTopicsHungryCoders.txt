@@ -79,7 +79,7 @@ What Is a Var-Arg and how to use it? What are benefits and limitations?
 
 What are regular expressions and how are they used in Java?
 
-
+Multithreading & Concurrency :
 What Is the Difference Between a Process and a Thread?
 How can we create a Thread in Java?
 Describe the Different States of a Thread?
@@ -89,6 +89,7 @@ What Is Java Memory Model (JMM) and it' s purpose?
 What is Data Race Condition and Visibility problem?
 Explain about Deadlock, Livelock, and Starvation conditions in Java Multithreading?
 What is Java Executor Service and type of threadpools which can be created with Java Executor service?
+What Are Executor and Executorservice and Differences Between them?
 What is Producer-Consumer problem and how to resolve it?
 What is threadLocal and what are the advantages of using ThreadLocal?
 What are Virtual Threads in Java 21?

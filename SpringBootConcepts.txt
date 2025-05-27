@@ -1047,6 +1047,41 @@ csrf token
 The path that tells the Java compiler and JVM where to look for classes, packages, and resources.
 In Spring Boot, you don't usually set the classpath manually — tools like Maven/Gradle handle it automatically.
 
+✅ Run Springboot app Directly from Source Code (without building JAR)
+Navigate to the directory where your pom.xml file is located, then run:
+bash
+mvn spring-boot:run
+This will:
+Compile your code.
+Start the embedded server (like Tomcat).
+Launch the application.
+
+✅ Run Springboot app Using JAR (after packaging)
+If you prefer to build the JAR and run it separately:
+
+Step 1: Build the JAR
+bash
+mvn clean package
+This creates a JAR file under the target/ directory.
+
+Step 2: Run the JAR
+bash
+java -jar target/your-app-name.jar
+🔹 Replace your-app-name.jar with the actual JAR file name.
+
+✅ Run with Custom Port or Profile (Optional)
+bash
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=9090 --spring.profiles.active=dev"
+This runs the app on port 9090 using the dev profile.
+
+✅ Maven Build Commands:
+Command	Description
+mvn clean install	Cleans, compiles, runs tests, packages, and installs to local Maven repo. # Full build + install
+mvn clean package	Cleans, compiles, runs tests, and packages the app (JAR/WAR).  # Only build the JAR/WAR
+mvn clean compile	Cleans and compiles only (no tests, no packaging).
+
+
+
 
 
 

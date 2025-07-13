@@ -1081,6 +1081,120 @@ mvn clean package	Cleans, compiles, runs tests, and packages the app (JAR/WAR). 
 mvn clean compile	Cleans and compiles only (no tests, no packaging).
 
 
+🔁 1. Transaction Management – Ensures Data Consistency
+Transaction Management in Spring ensures that a set of operations (e.g., database CRUD) are executed as a single atomic unit
+	— either all succeed, or all fail and roll back.
+
+✅ Example:
+@Transactional
+public void transferMoney(Account a, Account b, double amount) {
+    a.setBalance(a.getBalance() - amount);
+    b.setBalance(b.getBalance() + amount);
+    accountRepository.save(a);
+    accountRepository.save(b);
+}
+If an exception happens during any save, all changes are rolled back.
+
+🔑 Key Features:
+Uses @Transactional
+Mostly used in CRUD operations
+Ensures ACID properties
+Real-time operations (called per request)
+Involves small to medium data volumes
+
+⚙️ 2. Batch Processing – Handling Large Volumes of Data
+Batch Processing refers to automated, scheduled processing of large amounts of data — usually in chunks, often without user
+ interaction.
+
+✅ Example:
+Using Spring Batch, you read data → process it → write output.
+
+@Bean
+public Job importUserJob(JobBuilderFactory jobs, Step step) {
+    return jobs.get("importUserJob")
+               .flow(step)
+               .end()
+               .build();
+}
+🔑 Key Features:
+Uses Spring Batch
+Processes millions of records
+Supports chunking, retries, skipping, parallel steps
+Runs on a schedule or trigger (e.g. daily ETL)
+Has built-in support for restartability, job tracking
+
+🆚 Side-by-Side Comparison
+Feature				Transaction Management				Batch Processing (Spring Batch)
+Purpose				Ensure atomicity of operations		Handle large data volumes in bulk
+Scope				Small unit (e.g., one user action)	Big jobs (e.g., import millions of rows)
+Speed				Near real-time						Often time-consuming, but scheduled
+Example Use Case	Money transfer, user signup			Importing CSV, sending bulk emails
+Framework			Spring Core (@Transactional)		Spring Batch
+Rollback support	✅ Yes (auto rollback on failure)	✅ Yes (per chunk or job)
+Error handling		Throws exceptions					Retry, skip, restart
+
+🧠 Final Tip:
+Use Transaction Management when you're doing business operations where consistency is critical.
+Use Batch Processing when dealing with high-volume background jobs like file import/export, data migration, or cleanup.
+
+
+🔒 What is a Persistent Object?
+A persistent object is an object whose state is stored in a database (or some other storage) and can survive beyond the life
+ of the application.
+
+In simpler terms:
+It's a Java object that is linked to a database row.
+Any changes you make to this object will be tracked and saved to the database when a transaction is committed.
+
+🧠 Real-Life Analogy
+Imagine you fill a form in a mobile app:
+Before saving = it's just a Java object (transient).
+After you press Save, it goes into the database — now it's persistent.
+You can later load and update it — it's still a persistent object.
+
+✅ Example in Spring Boot using JPA
+1. Entity class
+@Entity
+public class User {
+    @Id
+    private Long id;
+    private String name;
+}
+
+2. Making a persistent object
+@Autowired
+private EntityManager entityManager;
+
+public void saveUser() {
+    User user = new User();
+    user.setId(1L);
+    user.setName("Sonali");
+
+    entityManager.persist(user); // 👈 Now it's persistent!
+}
+After persist(), the object becomes managed by JPA, and its state is synchronized with the database.
+
+🧾 Object States in JPA
+State		Description
+Transient	New object, not stored in DB yet
+Persistent	Managed by JPA, linked to a DB row
+Detached	Was persistent, but not being managed anymore (e.g., after session close)
+Removed		Marked for deletion from DB
+
+✅ Persistent Object Characteristics:
+Stored in DB
+Managed by JPA/Hibernate
+Automatically synchronized with the DB inside a transaction
+Changes are tracked (dirty checking)
+
+📌 Example of Tracking:
+@Transactional
+public void updateUser() {
+    User user = entityManager.find(User.class, 1L); // persistent object
+    user.setName("Sonali Nehere"); // Hibernate tracks this change
+    // No need to call save — it will auto-update at commit
+}
+
 
 
 

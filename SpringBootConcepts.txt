@@ -1196,6 +1196,34 @@ public void updateUser() {
 }
 
 
+1. JDBC
+What it is: Low-level API (Java Database Connectivity).
+Usage: You write SQL queries manually (SELECT, INSERT, etc.), manage connections, statements, and result sets.
+Spring Boot: Not required. JDBC works directly with plain Java.
+
+2. JPA (Java Persistence API)
+What it is: A specification (just rules & interfaces).
+It doesn’t have its own implementation. You cannot "use JPA" directly. You need a provider (implementation).
+
+3. Hibernate
+What it is: An implementation of JPA (plus its own features).
+It provides ORM (Object Relational Mapping).
+When you use @Entity, @Id, etc., that’s JPA annotations, but Hibernate is doing the actual work under the hood.
+
+✅ So yes, Hibernate is a JPA implementation (the most popular one).
+You can use Hibernate as pure Hibernate (using its Session API, SessionFactory, etc.).
+Or you can use it as a JPA provider (using EntityManager, PersistenceUnit, etc.).
+
+4. Spring Boot
+Just makes life easier: config, connection pooling, repositories, transactions, etc.
+But JDBC, JPA, Hibernate can all be used without Spring Boot.
+
+👉 So:
+JDBC = No ORM, manual SQL.
+JPA = Just rules/specification.
+Hibernate = ORM framework & JPA implementation.
+
+
 
 
 

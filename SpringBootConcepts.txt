@@ -1223,6 +1223,12 @@ JDBC = No ORM, manual SQL.
 JPA = Just rules/specification.
 Hibernate = ORM framework & JPA implementation.
 
+Logger - 
+logback bydefault in springboot
+to customize logback.xml
+you can use log4j, slfrj 
+
+
 
 
 

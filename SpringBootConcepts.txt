@@ -1225,8 +1225,9 @@ Hibernate = ORM framework & JPA implementation.
 
 Logger - 
 logback bydefault in springboot
-to customize logback.xml
-you can use log4j, slfrj 
+to customize logs create logback.xml
+you can use log4j, slfrj also .
+
 
 
 

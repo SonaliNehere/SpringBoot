@@ -1218,6 +1218,8 @@ Or you can use it as a JPA provider (using EntityManager, PersistenceUnit, etc.)
 Just makes life easier: config, connection pooling, repositories, transactions, etc.
 But JDBC, JPA, Hibernate can all be used without Spring Boot.
 
+
+Spring boot 2.7 JournalApp
 👉 So:
 JDBC = No ORM, manual SQL.
 JPA = Just rules/specification.
@@ -1227,6 +1229,28 @@ Logger -
 logback bydefault in springboot
 to customize logs create logback.xml
 you can use log4j, slfrj also .
+
+👉 By default, Spring Boot loads both — but the .properties file has higher precedence than the .yml file if both define the same key.
+⚙️ If You Want YAML to Take Priority
+You can explicitly control order using:
+@PropertySource("classpath:application.yml")
+or by removing the conflicting key from .properties
+
+❌ No, Hibernate does not work behind the scenes when you use MongoDB.
+MongoDB does not use Hibernate or JPA; it uses Spring Data MongoDB.
+
+Hibernate is an ORM (Object Relational Mapping) tool designed for relational databases (like MySQL, PostgreSQL, etc.).
+MongoDB, on the other hand, is a NoSQL document database, so it doesn’t use tables, rows, or SQL — hence ORM doesn’t apply.
+
+➡ Spring Boot uses Spring Data MongoDB, not Hibernate.
+	It provides repository interfaces like:
+	public interface UserRepository extends MongoRepository<User, String> { }
+
+This works similarly to JpaRepository, but internally:
+	Uses the MongoTemplate to interact with MongoDB.
+	Does not involve Hibernate or JPA EntityManager.
+
+
 
 
 

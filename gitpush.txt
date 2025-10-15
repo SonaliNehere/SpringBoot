@@ -1,0 +1,10 @@
+git init
+git add .
+git commit -m "Initial commit - Spring Boot Journal Management System"
+git remote add origin https://github.com/SonaliNehere/JournalAppJwt.git
+git branch -M main   # make sure branch is 'main'
+git push -u origin main
+
+git remote set-url origin https://SonaliNehere:<token>@github.com/SonaliNehere/JournalAppJwt.git
+git push -u origin main
+git push -u origin main --force
